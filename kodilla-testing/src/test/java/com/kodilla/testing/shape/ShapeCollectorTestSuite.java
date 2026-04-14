@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 @DisplayName("TDD: Shape Collector Test Suite")
 public class ShapeCollectorTestSuite {
     @Nested
-    @DisplayName("1st group of tests")
+    @DisplayName("Adding and removing figures")
     class FirstGroupOfTests {
 
         @DisplayName("When we add a figure to the collection using the addFigure method, " +
@@ -40,7 +40,7 @@ public class ShapeCollectorTestSuite {
     }
 
     @Nested
-    @DisplayName("2nd group of tests")
+    @DisplayName("Retrieving and displaying figures")
     class SecondGroupOfTests {
 
         @DisplayName("When we retrieve a figure with index n from a collection, it should be the same " +
