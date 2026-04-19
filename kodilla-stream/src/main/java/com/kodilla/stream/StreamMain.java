@@ -1,9 +1,17 @@
 package com.kodilla.stream;
 
 import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.book.Book;
+import com.kodilla.stream.book.BookDirectory;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
 import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.ExpressionExecutor;
 import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.person.People;
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
 
@@ -21,6 +29,11 @@ public class StreamMain {
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
+
+
+        // ------------------- Begin of task 7.1 ------------------------------
+
+        System.out.println("\nBegin of task 7.1");
 
         PoemBeautifier poemBeautifier = new PoemBeautifier();
         poemBeautifier.beautify("Beautiful string", string -> "ABC" + string);
@@ -45,8 +58,51 @@ public class StreamMain {
             resultString += " " + resultString.replace('e', '3');
             return resultString;
                                                                                                 });
+        System.out.println("End of task 7.1\n");
+
+        // ------------------ End of task 7.1 -----------------------
 
         System.out.println("Using Stream to generate even numbers from 1 to 20");
         NumbersGenerator.generateEven(20);
+
+        People.getList().stream()
+                .forEach(System.out::println);
+
+        BookDirectory theBookDirectory = new BookDirectory();
+
+        Map<String, Book> theResultMapOfBooks = theBookDirectory.getList().stream()
+                .filter(book -> book.getYearOfPublication() > 2005)
+                .collect(Collectors.toMap(Book::getSignature, book -> book));             // [1]
+
+        System.out.println("# elements: " + theResultMapOfBooks.size());             // [2]
+        theResultMapOfBooks.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())                   // [3]
+                .forEach(System.out::println);
+
+        String theResultStringOfBooks = theBookDirectory.getList().stream()  // [1]
+                .filter(book -> book.getYearOfPublication() > 2005)
+                .map(Book::toString)
+                .collect(Collectors.joining(",\n","<<",">>"));                    // [2]
+
+        System.out.println(theResultStringOfBooks);
+
+        // ------------------- Begin of task 7.3 ------------------------------
+
+        System.out.println("\nBegin of task 7.3");
+
+        Forum forum = new Forum();
+
+        Map<Integer, ForumUser> theResultMapOfForumUsers = forum.getUserList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M')
+                .filter(forumUser -> forumUser.getDateOfBirth().getYear() <= 2006)
+                .filter(forumUser -> forumUser.getNumberOfPostsPublished() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUniqueUserIdentifier, forumUser -> forumUser));
+
+        theResultMapOfForumUsers.entrySet().stream().map(entry -> entry.getKey() + " " +
+                entry.getValue()).forEach(System.out::println);
+
+        System.out.println("End of task 7.3\n");
+
+        // ------------------- End of task 7.3 --------------------------------
     }
 }
