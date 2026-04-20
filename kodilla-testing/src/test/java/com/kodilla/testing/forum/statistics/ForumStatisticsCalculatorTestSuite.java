@@ -28,10 +28,17 @@ public class ForumStatisticsCalculatorTestSuite {
     @Mock
     private Statistics statisticsMock;
 
+
+    private ForumStatisticsCalculator forumStatisticsCalculator;
+
+    @BeforeEach
+    void createForumStatisticsCalculator() {
+        forumStatisticsCalculator = new ForumStatisticsCalculator();
+    }
+
     @Test
     void testCalculateAdvStatisticsTheNumberOfPostsIs0() {
         //Given
-        ForumStatisticsCalculator forumStatisticsCalculator = new ForumStatisticsCalculator();
         List<String> resultUsersNames = generateListOfNUserNames(3);
         when(statisticsMock.usersNames()).thenReturn(resultUsersNames);
         when(statisticsMock.postsCount()).thenReturn(0);
@@ -47,7 +54,6 @@ public class ForumStatisticsCalculatorTestSuite {
     @Test
     void testCalculateAdvStatisticsTheNumberOfPostsIs1000() {
         //Given
-        ForumStatisticsCalculator forumStatisticsCalculator = new ForumStatisticsCalculator();
         List<String> resultUsersNames = generateListOfNUserNames(4);
         when(statisticsMock.usersNames()).thenReturn(resultUsersNames);
         when(statisticsMock.postsCount()).thenReturn(1000);
@@ -63,7 +69,6 @@ public class ForumStatisticsCalculatorTestSuite {
     @Test
     void testCalculateAdvStatisticsTheNumberOfCommentsIs0() {
         //Given
-        ForumStatisticsCalculator forumStatisticsCalculator = new ForumStatisticsCalculator();
         List<String> resultUsersNames = generateListOfNUserNames(4);
         when(statisticsMock.usersNames()).thenReturn(resultUsersNames);
         when(statisticsMock.postsCount()).thenReturn(1000);
@@ -79,7 +84,6 @@ public class ForumStatisticsCalculatorTestSuite {
     @Test
     void testCalculateAdvStatisticsTheNumberOfCommentsIsLessThanTheNumberOfPosts() {
         //Given
-        ForumStatisticsCalculator forumStatisticsCalculator = new ForumStatisticsCalculator();
         List<String> resultUsersNames = generateListOfNUserNames(4);
         when(statisticsMock.usersNames()).thenReturn(resultUsersNames);
         when(statisticsMock.postsCount()).thenReturn(100);
@@ -95,7 +99,6 @@ public class ForumStatisticsCalculatorTestSuite {
     @Test
     void testCalculateAdvStatisticsTheNumberOfCommentsIsGreaterThanTheNumberOfPosts() {
         //Given
-        ForumStatisticsCalculator forumStatisticsCalculator = new ForumStatisticsCalculator();
         List<String> resultUsersNames = generateListOfNUserNames(4);
         when(statisticsMock.usersNames()).thenReturn(resultUsersNames);
         when(statisticsMock.postsCount()).thenReturn(50);
@@ -111,7 +114,6 @@ public class ForumStatisticsCalculatorTestSuite {
     @Test
     void testCalculateAdvStatisticsTheNumberOfUsersIs0() {
         //Given
-        ForumStatisticsCalculator forumStatisticsCalculator = new ForumStatisticsCalculator();
         List<String> resultUsersNames = new ArrayList<>();
         when(statisticsMock.usersNames()).thenReturn(resultUsersNames);
         when(statisticsMock.postsCount()).thenReturn(10);
@@ -126,7 +128,6 @@ public class ForumStatisticsCalculatorTestSuite {
     @Test
     void testCalculateAdvStatisticsTheNumberOfUsersIs100() {
         //Given
-        ForumStatisticsCalculator forumStatisticsCalculator = new ForumStatisticsCalculator();
         List<String> resultUsersNames = generateListOfNUserNames(100);
         when(statisticsMock.usersNames()).thenReturn(resultUsersNames);
         when(statisticsMock.postsCount()).thenReturn(60);

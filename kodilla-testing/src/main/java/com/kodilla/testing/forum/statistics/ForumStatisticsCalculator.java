@@ -38,20 +38,20 @@ public class ForumStatisticsCalculator {
         numberOfPosts = statistics.postsCount();
         numberOfComments = statistics.commentsCount();
 
-        if (numberOfUsers == 0)
+        if (numberOfUsers == 0) {
             numberOfUsersDivisionByZero = true;
-            else {
+        } else {
                 numberOfUsersDivisionByZero = false;
                 averageNumberOfPostsPerUser = (float) numberOfPosts / numberOfUsers;
                 averageNumberOfCommentsPerUser = (float) numberOfComments / numberOfUsers;
-            }
+        }
 
-        if (numberOfPosts == 0)
+        if (numberOfPosts == 0) {
             numberOfPostsDivisionByZero = true;
-            else {
+        } else {
                 numberOfPostsDivisionByZero = false;
                 averageNumberOfCommentsPerPost = (float) numberOfComments / numberOfPosts;
-            }
+        }
 
     }
 
