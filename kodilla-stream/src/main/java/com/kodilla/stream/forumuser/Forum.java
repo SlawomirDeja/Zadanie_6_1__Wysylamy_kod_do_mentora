@@ -13,7 +13,7 @@ public final class Forum {
         theForumUserList.add(new ForumUser(1, "username1", 'M',
                 LocalDate.of(2001,1,8), 0));
         theForumUserList.add(new ForumUser(2, "username2", 'M',
-                LocalDate.of(2002,2,9), 11));
+                LocalDate.of(2006,04,19), 11));
         theForumUserList.add(new ForumUser(3, "username3", 'F',
                 LocalDate.of(2003,3,10), 12));
         theForumUserList.add(new ForumUser(4, "username4", 'F',
