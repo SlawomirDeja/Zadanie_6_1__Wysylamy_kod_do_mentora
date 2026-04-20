@@ -1,5 +1,6 @@
 package com.kodilla.testing.library;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -89,11 +90,18 @@ class BookDirectoryTestSuite {
         verify(libraryDatabaseMock, times(0)).listBooksWithCondition(anyString());    // [6]
     }
 
+    private BookLibrary bookLibrary;
+    private LibraryUser libraryUser;
+
+    @BeforeEach
+    void initializeTestInput() {
+        bookLibrary = new BookLibrary(libraryDatabaseMock);
+        libraryUser = new LibraryUser("firstname1", "lastname1", "peselId1");
+    }
+
     @Test
     void testListBooksInHandsOfTheUserHasNoBooksBorrowed() {
         // Given
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("firstname1", "lastname1", "peselId1");
         List<Book> resultListOf0Books = new ArrayList<>();
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(resultListOf0Books);
         // When
@@ -105,8 +113,6 @@ class BookDirectoryTestSuite {
     @Test
     void testListBooksInHandsOfTheUserHasOneBookBorrowed() {
         // Given
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("firstname1", "lastname1", "peselId1");
         List<Book> resultListOf1Books = generateListOfNBooks(1);
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(resultListOf1Books);
         // When
@@ -118,8 +124,6 @@ class BookDirectoryTestSuite {
     @Test
     void testListBooksInHandsOfTheUserHas5BooksBorrowed() {
         // Given
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        LibraryUser libraryUser = new LibraryUser("firstname1", "lastname1", "peselId1");
         List<Book> resultListOf5Books = generateListOfNBooks(5);
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(resultListOf5Books);
         // When
