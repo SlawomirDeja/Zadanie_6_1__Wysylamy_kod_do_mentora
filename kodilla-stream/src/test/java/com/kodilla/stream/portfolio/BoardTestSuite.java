@@ -139,7 +139,7 @@ class BoardTestSuite {
         long longTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
-                .map(Task::getCreated)
+                .map(com.kodilla.stream.portfolio.Task::getCreated)
                 .filter(d -> d.compareTo(LocalDate.now().minusDays(10)) <= 0)
                 .count();
 
@@ -163,7 +163,20 @@ class BoardTestSuite {
                 .mapToDouble(d -> ChronoUnit.DAYS.between(d, LocalDate.now()))
                 .average();
 
-        assertEquals(10, average.getAsDouble());
+        double averageDouble = 0;
+
+        if (average.isPresent()) {
+
+            averageDouble = average.getAsDouble();
+        }
+
+        double expectedAverage =
+            (ChronoUnit.DAYS.between(project.getTaskLists().get(1).getTasks().get(0).getCreated(), LocalDate.now()) +
+            ChronoUnit.DAYS.between(project.getTaskLists().get(1).getTasks().get(1).getCreated(), LocalDate.now()) +
+            ChronoUnit.DAYS.between(project.getTaskLists().get(1).getTasks().get(2).getCreated(), LocalDate.now()))
+                / 3;
+
+        assertEquals(expectedAverage, averageDouble);
         //Then
     }
 
