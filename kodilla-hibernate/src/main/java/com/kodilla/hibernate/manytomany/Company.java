@@ -6,6 +6,11 @@ import org.antlr.v4.runtime.misc.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+    name = "Company.retrieveCompaniesWithTheMatch",
+    query = "SELECT * FROM COMPANIES WHERE LEFT(COMPANY_NAME, 3) = :THREECHARS",
+    resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
