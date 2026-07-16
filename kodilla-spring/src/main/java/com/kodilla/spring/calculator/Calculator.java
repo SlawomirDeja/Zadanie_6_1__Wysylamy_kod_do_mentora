@@ -27,7 +27,10 @@ public class Calculator {
         return result;
     }
 
-    public double div(double a, double b) {
+    public double div(double a, double b) throws ArithmeticException {
+        if (b == 0) {
+            throw new ArithmeticException("Division by zero error");
+        }
         double result = a / b;
         display.displayValue(result);
         return result;
