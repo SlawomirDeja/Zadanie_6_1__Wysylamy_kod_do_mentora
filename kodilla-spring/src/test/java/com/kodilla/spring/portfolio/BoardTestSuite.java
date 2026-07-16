@@ -20,14 +20,14 @@ public class BoardTestSuite {
         String task9 = "task9";
         String task7 = "task7";
 
-        board.getToDoList().tasks.add(task3);
-        board.getInProgressList().tasks.add(task9);
-        board.getDoneList().tasks.add(task7);
+        board.getToDoList().getTasks().add(task3);
+        board.getInProgressList().getTasks().add(task9);
+        board.getDoneList().getTasks().add(task7);
 
         //When & Then
-        assertEquals(task3, board.getToDoList().tasks.get(0));
-        assertEquals(task9, board.getInProgressList().tasks.get(0));
-        assertEquals(task7, board.getDoneList().tasks.get(0));
+        assertEquals(task3, board.getToDoList().getTasks().get(0));
+        assertEquals(task9, board.getInProgressList().getTasks().get(0));
+        assertEquals(task7, board.getDoneList().getTasks().get(0));
 
         ((ConfigurableApplicationContext) context).close();
     }
