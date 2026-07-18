@@ -12,10 +12,11 @@ public class Bigmac {
 
     public static class BigmacBuilder {
 
-        private String bun;
-        private int burgers;
-        private String sauce;
-        private List<String> ingredients = new ArrayList<>();
+        private String bun = "without sesame";
+        private int burgers = 1;
+        private String sauce = "barbecue";
+        private List<String> ingredients = new ArrayList<>(List.of("ingredient1", "ingredient2",
+                                                                                        "ingredient3"));
 
         public BigmacBuilder bun(String bun) {
             this.bun = bun;
@@ -34,6 +35,11 @@ public class Bigmac {
 
         public BigmacBuilder ingredient(String ingredient) {
             this.ingredients.add(ingredient);
+            return this;
+        }
+
+        public BigmacBuilder removeIngredient(String ingredient) {
+            this.ingredients.remove(ingredient);
             return this;
         }
 

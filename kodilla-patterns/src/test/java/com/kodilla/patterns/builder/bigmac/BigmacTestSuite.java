@@ -13,6 +13,7 @@ public class BigmacTestSuite {
                .ingredient("Champignons")
                .ingredient("Onion")
                .ingredient("Cheese")
+               .removeIngredient("ingredient2")
                .burgers(2)
                .sauce("Standard")
                .bun("with sesame")
@@ -21,6 +22,6 @@ public class BigmacTestSuite {
         //When
         int howManyIngredients = bigmac.getIngredients().size();
         //Then
-        assertEquals(3, howManyIngredients);
+        assertEquals(5, howManyIngredients);
     }
 }
