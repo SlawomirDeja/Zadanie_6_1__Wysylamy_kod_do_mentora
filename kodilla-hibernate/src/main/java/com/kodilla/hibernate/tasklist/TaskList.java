@@ -2,7 +2,7 @@ package com.kodilla.hibernate.tasklist;
 
 import com.kodilla.hibernate.task.Task;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
