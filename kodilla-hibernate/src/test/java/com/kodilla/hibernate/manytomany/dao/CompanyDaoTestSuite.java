@@ -51,18 +51,16 @@ class CompanyDaoTestSuite {
         int greyMatterId = greyMatter.getId();
 
         //Then
-        assertNotEquals(0, softwareMachineId);
-        assertNotEquals(0, dataMaestersId);
-        assertNotEquals(0, greyMatterId);
-
-        //CleanUp
-        //try {
-        //    companyDao.deleteById(softwareMachineId);
-        //    companyDao.deleteById(dataMaestersId);
-        //    companyDao.deleteById(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+        try {
+            assertNotEquals(0, softwareMachineId);
+            assertNotEquals(0, dataMaestersId);
+            assertNotEquals(0, greyMatterId);
+        } finally {
+            //CleanUp
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        }
     }
 
     @Test
@@ -96,15 +94,17 @@ class CompanyDaoTestSuite {
                 employeeDao.retrieveEmployeesWithTheGivenLastName("lastname2");
 
         //Then
-        assertEquals(3, companiesWithTheMatch.size());
-        assertEquals(1, employeesWithTheGivenLastName.size());
-
-        //CleanUp
-        companyDao.deleteById(company1Id);
-        companyDao.deleteById(company2Id);
-        companyDao.deleteById(company3Id);
-        employeeDao.deleteById(employee1Id);
-        employeeDao.deleteById(employee2Id);
-        employeeDao.deleteById(employee3Id);
+        try {
+            assertEquals(3, companiesWithTheMatch.size());
+            assertEquals(1, employeesWithTheGivenLastName.size());
+        } finally {
+            //CleanUp
+            companyDao.deleteById(company1Id);
+            companyDao.deleteById(company2Id);
+            companyDao.deleteById(company3Id);
+            employeeDao.deleteById(employee1Id);
+            employeeDao.deleteById(employee2Id);
+            employeeDao.deleteById(employee3Id);
+        }
     }
 }
