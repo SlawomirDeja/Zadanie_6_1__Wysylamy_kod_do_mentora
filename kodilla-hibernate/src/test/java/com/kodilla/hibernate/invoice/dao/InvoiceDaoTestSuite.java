@@ -53,13 +53,16 @@ class InvoiceDaoTestSuite {
         int product1Id = product1.getId();
         int product2Id = product2.getId();
         //Then
-        assertNotEquals(0, invoiceId);
-        //CleanUp
-        itemDao.deleteById(item1Id);
-        itemDao.deleteById(item2Id);
-        itemDao.deleteById(item3Id);
-        invoiceDao.deleteById(invoiceId);
-        productDao.deleteById(product1Id);
-        productDao.deleteById(product2Id);
+        try {
+            assertNotEquals(0, invoiceId);
+        } finally {
+            //CleanUp
+            itemDao.deleteById(item1Id);
+            itemDao.deleteById(item2Id);
+            itemDao.deleteById(item3Id);
+            invoiceDao.deleteById(invoiceId);
+            productDao.deleteById(product1Id);
+            productDao.deleteById(product2Id);
+        }
     }
 }
